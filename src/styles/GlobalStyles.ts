@@ -52,8 +52,12 @@ table {
   text-decoration: none;
  
 }
+body{
+	background-color: #f7f7f7;
+}
 
 *{
+	
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif !important;
 }
