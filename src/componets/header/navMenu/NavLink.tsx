@@ -11,7 +11,7 @@ const NavLink = styled(({ isSelected, ...props }: INavLinkProps) => (
   <Link {...props} />
 ))`
   background-color: ${({ isSelected }) =>
-    isSelected ? 'rgba(0, 0, 0, 0.25)' : 'inherit'};
+    isSelected ? 'rgba(0, 0, 0, 0.25)' : 'rgba(18, 92, 19, 1)'};
 
   color: #fff !important;
   font-size: 1rem;
