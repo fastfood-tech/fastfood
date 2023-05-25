@@ -21,7 +21,8 @@
         "react/jsx-filename-extension": [1, {
         "extensions": [
           ".ts",
-          ".tsx"
+          ".tsx",
+          
         ]
         }],
         "prettier/prettier": [
