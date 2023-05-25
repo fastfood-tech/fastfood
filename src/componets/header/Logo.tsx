@@ -8,8 +8,8 @@ const Container = styled.div`
 
   & > h1 {
     color: #fff;
+    font-family: Roboto, sans-serif;
     font-size: 1.75rem;
-    font-family: Roboto, sans-serif !important;
     font-weight: 500;
   }
 
