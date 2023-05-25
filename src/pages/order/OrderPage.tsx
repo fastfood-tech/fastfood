@@ -11,8 +11,8 @@ const Container = styled.div`
 
   padding-top: 4rem;
 
-  h1 {
-    font-weight: 900;
+  & > h1 {
+    font-weight: 700;
     font-size: 2.25rem;
     color: #181818;
 
