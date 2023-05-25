@@ -6,11 +6,11 @@ const Container = styled.div`
   display: flex;
   align-items: center;
 
-  h1 {
+  & > h1 {
     color: #fff;
     font-size: 1.75rem;
-    letter-spacing: 0.075rem;
-    font-weight: bold;
+    font-family: Roboto, sans-serif !important;
+    font-weight: 500;
   }
 
   div.icon-holder {
