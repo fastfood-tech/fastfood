@@ -8,8 +8,7 @@ import Logo from './Logo';
 
 const Container = styled.div`
   width: 100vw;
-  height: 5vh;
-  min-height: 4rem;
+  height: 4rem;
 
   position: fixed;
   top: 0;
