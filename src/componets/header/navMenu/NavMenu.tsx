@@ -15,7 +15,7 @@ const Container = styled(({ isMenuOpen, ...props }: IContainerProps) => (
   @media screen and (max-width: 800px) {
     height: 100vh;
     width: 50vw;
-    min-width: 150px;
+    min-width: 120px;
 
     display: flex;
     flex-direction: column;
