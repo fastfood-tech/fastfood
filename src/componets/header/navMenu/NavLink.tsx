@@ -13,10 +13,10 @@ const NavLink = styled(({ isSelected, ...props }: INavLinkProps) => (
   background-color: ${({ isSelected }) =>
     isSelected ? 'rgba(0, 0, 0, 0.25)' : 'rgba(18, 92, 19, 1)'};
 
-  color: #fff !important;
+  font-family: Roboto, sans-serif;
   font-size: 1rem;
-  letter-spacing: 0.025rem;
-  font-weight: 600;
+  letter-spacing: 0.05rem;
+  font-weight: 500;
 
   margin-right: 1rem;
 

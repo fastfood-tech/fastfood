@@ -10,6 +10,8 @@ interface IContainerProps extends React.HtmlHTMLAttributes<HTMLElement> {
 const Container = styled(({ isMenuOpen, ...props }: IContainerProps) => (
   <nav {...props} />
 ))`
+  color: #fff;
+
   @media screen and (max-width: 800px) {
     height: 100vh;
     width: 50vw;
