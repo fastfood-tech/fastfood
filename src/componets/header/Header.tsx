@@ -1,8 +1,8 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import NavMenu from './navMenu/Index';
+import NavMenu from './navMenu/NavMenu';
 import ContentCover from './ContentCover';
-import MenuButton from './mobileMenuButton/Index';
+import MenuButton from './mobileMenuButton/MobileMenuButton';
 import UseMobileMenu from '../../hooks/UseMobileMenu';
 import Logo from './Logo';
 
