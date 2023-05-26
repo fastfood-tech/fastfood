@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { Direction, WrapMode } from './types';
 
 interface IItemsHolderProps extends React.HtmlHTMLAttributes<HTMLElement> {
-  direction: Direction;
-  wrapMode: WrapMode;
-  itemsGap: string;
+  direction?: Direction;
+  wrapMode?: WrapMode;
+  itemsGap?: string;
 }
 
 const ItemsHolder = styled(
@@ -14,9 +14,9 @@ const ItemsHolder = styled(
   ),
 )`
   display: flex;
-  flex-direction: ${props => props.direction};
-  flex-wrap: ${props => props.wrapMode};
-  gap: ${props => props.itemsGap};
+  flex-direction: ${({ direction = 'row' }) => direction};
+  flex-wrap: ${({ wrapMode = 'nowrap' }) => wrapMode};
+  gap: ${({ itemsGap = '3rem' }) => itemsGap};
 
   & > * {
     flex-shrink: 0;
@@ -27,9 +27,11 @@ const ItemsHolder = styled(
   overflow-x: hidden;
 
   &:hover {
-    overflow-x: ${props => (props.wrapMode !== 'nowrap' ? 'hidden' : 'scroll')};
-    padding-bottom: ${props =>
-      props.wrapMode === 'wrap' ? '1rem' : '0.25rem'};
+    overflow-x: ${({ wrapMode = 'nowrap' }) =>
+      wrapMode !== 'nowrap' ? 'hidden' : 'scroll'};
+
+    padding-bottom: ${({ wrapMode = 'nowrap' }) =>
+      wrapMode === 'wrap' ? '1rem' : '0.25rem'};
   }
 
   &::-webkit-scrollbar {

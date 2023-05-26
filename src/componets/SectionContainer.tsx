@@ -1,17 +1,12 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { styled } from 'styled-components';
-import { Direction, WrapMode } from './types';
-import ItemsHolder from './ItemsHolder';
+import ItemsHolder from './itemsHolder/ItemsHolder';
 
-interface ItemsListProps {
+interface ISectionContainerProps extends React.HtmlHTMLAttributes<HTMLElement> {
   title?: string;
   subTitle?: string;
   titleFontSize?: string;
   subtitleFontSize?: string;
-  direction?: Direction;
-  wrapMode?: WrapMode;
-  itemsGap?: string;
-  items: ReactNode[];
 }
 
 const Container = styled.div`
@@ -32,27 +27,19 @@ const Container = styled.div`
   margin-top: 4rem;
 `;
 
-export default function ItemsList({
+export default function SectionContainer({
   title,
   subTitle,
   titleFontSize = '1.75rem',
   subtitleFontSize = '1.25rem',
-  direction = 'row',
-  wrapMode = 'nowrap',
-  items,
-  itemsGap = '5rem',
-}: ItemsListProps) {
+  children,
+  ...props
+}: ISectionContainerProps) {
   return (
-    <Container>
+    <Container {...props}>
       {title && <h1 style={{ fontSize: titleFontSize }}>{title}</h1>}
       {subTitle && <h2 style={{ fontSize: subtitleFontSize }}>{subTitle}</h2>}
-      <ItemsHolder
-        direction={direction}
-        wrapMode={wrapMode}
-        itemsGap={itemsGap}
-      >
-        {items}
-      </ItemsHolder>
+      {children}
     </Container>
   );
 }
