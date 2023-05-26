@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ItemsList from '../../../src/componets/itemsList/ItemsList';
 import * as itemsFactory from './itemsFactory';
+import { Direction, WrapMode } from '../../../src/componets/itemsList/types';
 
 
 describe('<ItemsList />', () => {
@@ -27,5 +28,25 @@ describe('<ItemsList />', () => {
     render(<ItemsList subTitle={subTitle} items={items} />);
 
     expect(screen.getByText(subTitle)).toBeInTheDocument();
+  });
+
+  it('should apply custom font-size to subTitle', () => {
+    const subTitle = 'A beautiful subtitle';
+    const fontSize = "4.2rem"
+
+    const items = itemsFactory.createItems();
+    render(<ItemsList subTitle={subTitle} subtitleFontSize={fontSize} items={items} />);
+
+    expect(screen.getByText(subTitle)).toHaveStyle(`font-size: ${fontSize}`);
+  });
+
+  it('should apply custom font-size to Title', () => {
+    const title = 'A beautiful title';
+    const fontSize = "7.3rem"
+
+    const items = itemsFactory.createItems();
+    render(<ItemsList title={title} titleFontSize={fontSize} items={items} />);
+
+    expect(screen.getByText(title)).toHaveStyle(`font-size: ${fontSize}`);
   });
 });
