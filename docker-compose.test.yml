@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  fastfood-test:
+    build: .
+    container_name: fastfood-test
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+    working_dir: /source
+    command: npm run build
+    environment:
+      NODE_ENV: test
+      REACT_APP_API_BASE_URL: ${REACT_APP_TEST_API_BASE_URL_}

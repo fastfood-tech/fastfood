@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  fastfood-production:
+    build: .
+    container_name: fastfood-front
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+    working_dir: /source
+    command: npm run build
+    environment:
+      NODE_ENV: production
+      REACT_APP_API_BASE_URL: ${REACT_APP_API_BASE_URL}
+    volumes:
+      - /usr/source/fastfood/front-end:/source/build
