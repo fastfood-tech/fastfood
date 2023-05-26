@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { Category } from '../types/types';
 
-export default function useCategoryHandler() {
+export interface ICategoryHandler {
+  select: (category: Category) => void;
+  selected: Category;
+  isSelected: (category: Category) => boolean;
+}
+
+export default function useCategoryHandler(): ICategoryHandler {
   const [selected, setSelected] = useState<Category>({} as Category);
 
   const isSelected = (category: Category) => {

@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Direction, WrapMode } from './types';
 
-interface IItemsHolderProps extends React.HtmlHTMLAttributes<HTMLElement> {
+export interface IItemsHolderProps
+  extends React.HtmlHTMLAttributes<HTMLElement> {
   direction?: Direction;
   wrapMode?: WrapMode;
   itemsGap?: string;

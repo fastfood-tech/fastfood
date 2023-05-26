@@ -20,10 +20,6 @@ const Container = styled.div`
     margin-top: 1rem;
   }
 
-  ${ItemsHolder} {
-    margin-top: 3rem;
-  }
-
   margin-top: 4rem;
 `;
 
