@@ -1,0 +1,21 @@
+on:
+  pull_request:
+    branches:
+      - develop
+
+name: Test
+env:
+  REACT_APP_TEST_API_BASE_URL_: ${{ secrets.REACT_APP_TEST_API_BASE_URL_ }}
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build
+        run: npm run ci:build
+
+      - name: Test
+        run: npm run ci:test
