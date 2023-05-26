@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 const SearchInput = styled.input`
   height: 3.5rem;

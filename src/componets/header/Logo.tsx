@@ -1,6 +1,6 @@
 import React from 'react';
 import { CiBurger as BurgerIcon } from 'react-icons/ci';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;

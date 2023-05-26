@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import NavMenu from './navMenu/NavMenu';
 import ContentCover from './ContentCover';
 import MenuButton from './mobileMenuButton/MobileMenuButton';
