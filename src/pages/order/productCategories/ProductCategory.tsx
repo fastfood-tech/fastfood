@@ -1,22 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
-import CardContainer from '../../../componets/CardContainer';
 
-interface IProductCategoryProps extends React.HtmlHTMLAttributes<HTMLElement> {
+import SelectableItemContainer, {
+  ISelectableItemContainerProps,
+} from '../../../componets/SelectableItem';
+
+interface IProductCategoryProps extends ISelectableItemContainerProps {
   name: string;
   image: { url: string; description?: string };
 }
 
-const Container = styled(CardContainer)`
+const Container = styled(SelectableItemContainer)`
   width: auto;
-  max-width: 18rem;
+  max-width: 21.5rem;
+  min-width: 200px;
+  min-height: 13rem;
 
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
 
-  & > div {
+  & > div:first-child {
     width: 66%;
 
     img {
@@ -42,20 +47,19 @@ const Container = styled(CardContainer)`
   padding: 1rem;
   padding-bottom: 2rem;
 
-  cursor: pointer;
-
-  &:hover {
-    filter: brightness(95%);
+  @media screen and (max-width: 800px) {
+    min-height: 10rem;
   }
 `;
 
 export default function ProductCategory({
   name,
   image,
+  isSelected,
   ...props
 }: IProductCategoryProps) {
   return (
-    <Container {...props}>
+    <Container isSelected={isSelected} {...props}>
       <div>
         <img src={image.url} alt={image.description || ''} />
       </div>

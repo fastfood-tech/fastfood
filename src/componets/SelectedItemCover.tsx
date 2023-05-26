@@ -31,10 +31,7 @@ export default function SelectedItemCover({
   ...props
 }: SelectedItemCoverProps) {
   return (
-    <Container
-      style={{ ...style, display: show ? 'flex' : 'block' }}
-      {...props}
-    >
+    <Container style={{ ...style, display: show ? 'flex' : 'none' }} {...props}>
       <CheckIcon />
     </Container>
   );
