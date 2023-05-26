@@ -24,6 +24,8 @@ const Container = styled.div`
   padding-left: 2.5rem;
   padding-right: 2.5rem;
 
+  z-index: 100;
+
   overflow: hidden;
 
   @media screen and (max-width: 350px) {
