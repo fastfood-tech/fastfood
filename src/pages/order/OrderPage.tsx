@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import useSearch from '../../hooks/useSearch';
 import SearchInput from './SearchInput';
+import Categories from './productCategories/Categories';
+import useCategoryHandler from '../../hooks/useCategoryHandler';
+import SectionContainer from '../../componets/SectionContainer';
 
 const Container = styled.div`
   height: 100vh;
@@ -22,6 +25,7 @@ const Container = styled.div`
 
 export default function OrderPage() {
   const { searchedValue, handleSearch } = useSearch();
+  const categoryHandler = useCategoryHandler();
 
   return (
     <Container>
@@ -31,6 +35,12 @@ export default function OrderPage() {
         value={searchedValue}
         onChange={handleSearch}
       />
+      <SectionContainer title="Categorias" subTitle="Navegue por categoria">
+        <Categories
+          style={{ marginTop: '3rem' }}
+          categoryHandler={categoryHandler}
+        />
+      </SectionContainer>
     </Container>
   );
 }

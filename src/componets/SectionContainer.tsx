@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import ItemsHolder from './itemsHolder/ItemsHolder';
 
 interface ISectionContainerProps extends React.HtmlHTMLAttributes<HTMLElement> {
   title?: string;

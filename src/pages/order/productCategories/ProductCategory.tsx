@@ -40,18 +40,22 @@ const Container = styled(SelectableItemContainer)`
     color: #121212;
 
     text-align: center;
+
+    word-break: break-all;
   }
 
   padding: 1rem;
   padding-bottom: 2rem;
 
   @media screen and (max-width: 800px) {
-    width: auto;
+    width: 60vw;
     max-width: 21.5rem;
     min-width: 200px;
 
-    min-height: 10rem;
+    min-height: 15rem;
   }
+
+  margin: 1rem;
 `;
 
 export default function ProductCategory({

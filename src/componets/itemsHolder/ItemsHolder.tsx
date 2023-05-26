@@ -35,17 +35,27 @@ const ItemsHolder = styled(
       wrapMode === 'wrap' ? '1rem' : '0.25rem'};
   }
 
-  &::-webkit-scrollbar {
-    height: 0.75rem;
+  @media screen and (hover: hover) {
+    &::-webkit-scrollbar {
+      height: 0.75rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #125c13aa;
+      border-radius: 9px;
+    }
   }
 
-  &::-webkit-scrollbar-track {
-    background-color: none;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #125c13aa;
-    border-radius: 9px;
+  @media screen and (hover: none) {
+    overflow-x: ${({ wrapMode = 'nowrap', direction = 'row' }) =>
+      wrapMode !== 'nowrap' &&
+      (direction === 'column' || direction === 'column-reverse')
+        ? 'hidden'
+        : 'scroll'};
   }
 `;
 
