@@ -11,9 +11,7 @@ interface IProductCategoryProps extends ISelectableItemContainerProps {
 }
 
 const Container = styled(SelectableItemContainer)`
-  width: auto;
-  max-width: 21.5rem;
-  min-width: 200px;
+  width: 21.5rem;
   min-height: 13rem;
 
   display: flex;
@@ -48,6 +46,10 @@ const Container = styled(SelectableItemContainer)`
   padding-bottom: 2rem;
 
   @media screen and (max-width: 800px) {
+    width: auto;
+    max-width: 21.5rem;
+    min-width: 200px;
+
     min-height: 10rem;
   }
 `;
