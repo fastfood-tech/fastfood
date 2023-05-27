@@ -17,3 +17,9 @@ export type Product = {
   ingredients: string;
   price: number;
 };
+
+export type SelectedProduct = Product & {
+  amount: number;
+  selectedExtraIds: number[];
+  annotations: string;
+};
