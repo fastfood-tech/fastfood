@@ -1,4 +1,10 @@
-export default function getProductBanners() {
+import { Image } from '../../../../types/types';
+
+type ProductBanner = Image & {
+  id: number;
+};
+
+export default function getProductBanners(): ProductBanner[] {
   const productsBanners = [
     {
       id: 1,
