@@ -5,6 +5,7 @@ import { Category } from '../../../types/types';
 import ItemsHolder from '../../../componets/itemsHolder/ItemsHolder';
 import getProductBanners from './utils/getProductBanners';
 import Product from './Product';
+import useProductHandler from '../../../hooks/useProductHandler';
 
 interface IProductsProps extends React.HtmlHTMLAttributes<HTMLElement> {
   searchedProduct: string;
@@ -16,6 +17,7 @@ export default function Products({
   ...props
 }: IProductsProps) {
   const { products } = useProducts();
+  const { select, isSelected } = useProductHandler();
 
   const shouldShowQuickSelection =
     !searchedProduct && !selectedProductCategory.name;
@@ -28,7 +30,8 @@ export default function Products({
       {products.map(p => (
         <Product
           key={`searched-product-${p.id}`}
-          isSelected={false}
+          isSelected={isSelected(p)}
+          onClick={() => select(p)}
           product={p}
           bannerImage={{ url: getProductBanners()[0].url }}
         />

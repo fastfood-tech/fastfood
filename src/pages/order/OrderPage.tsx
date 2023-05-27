@@ -5,6 +5,7 @@ import SearchInput from './SearchInput';
 import Categories from './productCategories/Categories';
 import useCategoryHandler from '../../hooks/useCategoryHandler';
 import SectionContainer from '../../componets/SectionContainer';
+import Products from './products/Products';
 
 const Container = styled.div`
   height: 100vh;
@@ -39,6 +40,16 @@ export default function OrderPage() {
         <Categories
           style={{ marginTop: '3rem' }}
           categoryHandler={categoryHandler}
+        />
+      </SectionContainer>
+      <SectionContainer
+        title="Produtos"
+        subTitle="Selecione um produto para adicionar ao seu pedido"
+      >
+        <Products
+          searchedProduct={searchedValue}
+          selectedProductCategory={categoryHandler.selected}
+          style={{ marginTop: '3rem' }}
         />
       </SectionContainer>
     </Container>
