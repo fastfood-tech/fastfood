@@ -23,7 +23,7 @@ const Container = styled.div`
   cursor: pointer;
   @media (hover: hover) {
     &:hover {
-      box-shadow: inset 0px 0px 0px 5px #32b72f;
+      box-shadow: 0px 0px 0px 5px rgba(70, 200, 70, 0.8);
     }
   }
 
