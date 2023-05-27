@@ -23,3 +23,5 @@ export type SelectedProduct = Product & {
   selectedExtraIds: number[];
   annotations: string;
 };
+
+export type SelectedProductsById = { [key: number]: SelectedProduct }[];

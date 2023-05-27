@@ -1,16 +1,16 @@
 import React, { createContext, useMemo } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
-import { SelectedProduct } from '../types/types';
+import { SelectedProductsById } from '../types/types';
 
 type SelectedProductsContextValue = {
-  selectedProducts: SelectedProduct[];
-  setSelectedProducts: (value: SelectedProduct[]) => void;
+  selectedProductsById: SelectedProductsById;
+  setSelectedProductsById: (value: SelectedProductsById) => void;
 };
 
 export const SelectedProductsContext =
   createContext<SelectedProductsContextValue>({
-    selectedProducts: [],
-    setSelectedProducts: () => undefined,
+    selectedProductsById: [],
+    setSelectedProductsById: () => undefined,
   });
 
 export function SelectedProductsProvider({
@@ -18,12 +18,14 @@ export function SelectedProductsProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const { storedValue: selectedProducts, setValue: setSelectedProducts } =
-    useLocalStorage<SelectedProduct[]>('selectedProducts', []);
+  const {
+    storedValue: selectedProductsById,
+    setValue: setSelectedProductsById,
+  } = useLocalStorage<SelectedProductsById>('selectedProducts', []);
 
   const contextValue = useMemo(() => {
-    return { selectedProducts, setSelectedProducts };
-  }, [selectedProducts, setSelectedProducts]);
+    return { selectedProductsById, setSelectedProductsById };
+  }, [selectedProductsById, setSelectedProductsById]);
 
   return (
     <SelectedProductsContext.Provider value={contextValue}>
