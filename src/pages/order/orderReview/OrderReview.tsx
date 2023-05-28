@@ -2,8 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import Fab from '@mui/material/Fab';
 import CloseIcon from '@mui/icons-material/CloseRounded';
+import { Checkbox, withStyles } from '@mui/material';
 import useReviewProductHandler from '../../../hooks/useReviewProductHandler';
 import SelectedProductDetails from './SelectedProductDetails';
+import SectionContainer from '../../../componets/SectionContainer';
+import ExtraItem from './ExtraItem';
 
 const ContentCover = styled.div`
   height: 100vh;
@@ -101,7 +104,7 @@ const Container = styled.div`
 `;
 
 export default function OrderReview() {
-  const { cancel } = useReviewProductHandler();
+  const { cancel, reviewingProduct } = useReviewProductHandler();
 
   return (
     <>
@@ -123,6 +126,16 @@ export default function OrderReview() {
 
         <div className="scrollable-content">
           <SelectedProductDetails />
+          <SectionContainer
+            title="Adicionais"
+            titleFontSize="1.5rem"
+            subTitle="Selecione os ingredientes que você quer adicionar a mais no seu lanche"
+            subtitleFontSize="1rem"
+          >
+            {reviewingProduct?.extras.map(e => (
+              <ExtraItem key={`product-extra-item-${e.id}`} item={e} />
+            ))}
+          </SectionContainer>
         </div>
       </Container>
     </>

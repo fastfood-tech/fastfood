@@ -16,6 +16,15 @@ export type Product = {
   image: Image;
   ingredients: string;
   price: number;
+  extras: Extra[];
+};
+
+export type Extra = {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: Image;
 };
 
 export type SelectedProduct = Product & {
