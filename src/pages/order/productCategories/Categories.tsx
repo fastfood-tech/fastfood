@@ -17,7 +17,7 @@ export default function Categories({
   const { categories } = useCategories();
 
   return (
-    <ItemsHolder itemsGap="5vw" {...props}>
+    <ItemsHolder itemsGap="2vw" {...props}>
       {categories.map(c => (
         <ProductCategory
           key={c.id}

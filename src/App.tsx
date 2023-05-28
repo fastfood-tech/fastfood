@@ -4,6 +4,7 @@ import Header from './componets/header/Header';
 import GlobalStyle from './styles/GlobalStyles';
 import OrderPage from './pages/order/OrderPage';
 import { SelectedProductsProvider } from './contexts/SelectedProductsContext';
+import { ReviewingProductsProvider } from './contexts/ReviewingProductsContext';
 
 function App() {
   return (
@@ -15,9 +16,11 @@ function App() {
           <Route
             path="/"
             element={
-              <SelectedProductsProvider>
-                <OrderPage />
-              </SelectedProductsProvider>
+              <ReviewingProductsProvider>
+                <SelectedProductsProvider>
+                  <OrderPage />
+                </SelectedProductsProvider>
+              </ReviewingProductsProvider>
             }
           />
         </Routes>

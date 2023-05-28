@@ -4,7 +4,8 @@ import { Product as ProductType } from '../../../types/types';
 import splitProductsIntoLines from './utils/splitProductsIntoLines';
 import Product from './Product';
 import getProductBanners from './utils/getProductBanners';
-import useProductHandler from '../../../hooks/useProductHandler';
+import useSelectProductHandler from '../../../hooks/useSelectProductHandler';
+import useReviewProductHandler from '../../../hooks/useReviewProductHandler';
 
 interface QuickSelectionProps extends React.HtmlHTMLAttributes<HTMLElement> {
   products: ProductType[];
@@ -19,7 +20,8 @@ export default function QuickSelection({
     products,
     productBanners.length,
   );
-  const { isSelected, select } = useProductHandler();
+  const { isSelected } = useSelectProductHandler();
+  const { startReviewing } = useReviewProductHandler();
 
   return (
     <div {...props}>
@@ -29,7 +31,7 @@ export default function QuickSelection({
             <Product
               key={`quick-selection-line-${banner.id}-product-${p.id}`}
               isSelected={isSelected(p)}
-              onClick={() => select(p)}
+              onClick={() => startReviewing(p)}
               product={p}
               bannerImage={{ url: banner.url }}
             />

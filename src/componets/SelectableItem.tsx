@@ -5,9 +5,13 @@ import SelectedItemCover from './SelectedItemCover';
 export interface ISelectableItemContainerProps
   extends React.HtmlHTMLAttributes<HTMLElement> {
   isSelected: boolean;
+  shaddowOnHover?: boolean;
 }
 
-const Container = styled.div`
+type ContainerProps = Omit<ISelectableItemContainerProps, 'isSelected'>;
+const Container = styled(({ shaddowOnHover, ...props }: ContainerProps) => (
+  <div {...props} />
+))`
   width: fit-content;
   height: fit-content;
 
@@ -20,10 +24,13 @@ const Container = styled.div`
 
   position: relative;
 
-  cursor: pointer;
+  cursor: ${({ shaddowOnHover }) => (shaddowOnHover ? 'pointer' : 'default')};
   @media (hover: hover) {
     &:hover {
-      box-shadow: 0px 0px 0px 5px rgba(70, 200, 70, 0.8);
+      ${({ shaddowOnHover }) =>
+        shaddowOnHover
+          ? 'box-shadow: 0px 0px 0px 5px rgba(70, 200, 70, 0.8);'
+          : ''}
     }
   }
 
@@ -33,10 +40,11 @@ const Container = styled.div`
 export default function SelectableItemContainer({
   children,
   isSelected,
+  shaddowOnHover = true,
   ...props
 }: ISelectableItemContainerProps) {
   return (
-    <Container {...props}>
+    <Container shaddowOnHover={shaddowOnHover} {...props}>
       {children}
       <SelectedItemCover show={isSelected} />
     </Container>
