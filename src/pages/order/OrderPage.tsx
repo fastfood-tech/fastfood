@@ -6,7 +6,7 @@ import Categories from './productCategories/Categories';
 import useCategoryHandler from '../../hooks/useCategoryHandler';
 import SectionContainer from '../../componets/SectionContainer';
 import Products from './products/Products';
-import OrderReview from './OrderReview';
+import OrderReview from './orderReview/OrderReview';
 import useReviewProductHandler from '../../hooks/useReviewProductHandler';
 
 const Container = styled.div`
