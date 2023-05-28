@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface ISectionContainerProps extends React.HtmlHTMLAttributes<HTMLElement> {
+export interface ISectionContainerProps
+  extends React.HtmlHTMLAttributes<HTMLElement> {
   title?: string;
   subTitle?: string;
   titleFontSize?: string;
