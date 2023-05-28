@@ -3,7 +3,8 @@ import { Product, SelectedProduct } from '../types/types';
 import { SelectedProductsContext } from '../contexts/SelectedProductsContext';
 
 export interface ISelectProductHandler {
-  select: (product: Product) => void;
+  select: (product: SelectedProduct) => void;
+  remove: (product: Product) => void;
   getSelectedProducts: () => SelectedProduct[];
   isSelected: (product: Product) => boolean;
 }
@@ -17,10 +18,13 @@ export default function useSelectProductHandler(): ISelectProductHandler {
     return selectedProductsById[product.id] !== undefined;
   };
 
-  const select = (product: Product) => {
-    if (isSelected(product)) delete selectedProductsById[product.id];
-    else selectedProductsById[product.id] = product;
+  const remove = (product: Product) => {
+    delete selectedProductsById[product.id];
+    setSelectedProductsById({ ...selectedProductsById });
+  };
 
+  const select = (product: SelectedProduct) => {
+    selectedProductsById[product.id] = product;
     setSelectedProductsById({ ...selectedProductsById });
   };
 
@@ -29,6 +33,7 @@ export default function useSelectProductHandler(): ISelectProductHandler {
 
   return {
     select,
+    remove,
     getSelectedProducts,
     isSelected,
   };

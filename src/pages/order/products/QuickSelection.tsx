@@ -20,7 +20,7 @@ export default function QuickSelection({
     products,
     productBanners.length,
   );
-  const { isSelected } = useSelectProductHandler();
+  const { isSelected, remove } = useSelectProductHandler();
   const { startReviewing } = useReviewProductHandler();
 
   return (
@@ -31,7 +31,7 @@ export default function QuickSelection({
             <Product
               key={`quick-selection-line-${banner.id}-product-${p.id}`}
               isSelected={isSelected(p)}
-              onClick={() => startReviewing(p)}
+              onClick={() => (isSelected(p) ? remove(p) : startReviewing(p))}
               product={p}
               bannerImage={{ url: banner.url }}
             />

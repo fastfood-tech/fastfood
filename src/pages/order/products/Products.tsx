@@ -19,7 +19,7 @@ export default function Products({
   ...props
 }: IProductsProps) {
   const { products } = useProducts();
-  const { isSelected } = useSelectProductHandler();
+  const { isSelected, remove } = useSelectProductHandler();
   const { startReviewing } = useReviewProductHandler();
 
   const shouldShowQuickSelection =
@@ -34,7 +34,7 @@ export default function Products({
         <Product
           key={`searched-product-${p.id}`}
           isSelected={isSelected(p)}
-          onClick={() => startReviewing(p)}
+          onClick={() => (isSelected(p) ? remove(p) : startReviewing(p))}
           product={p}
           bannerImage={{ url: getProductBanners()[0].url }}
         />

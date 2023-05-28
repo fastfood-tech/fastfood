@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import Fab from '@mui/material/Fab';
 import CloseIcon from '@mui/icons-material/CloseRounded';
-import { Checkbox, withStyles } from '@mui/material';
 import useReviewProductHandler from '../../../hooks/useReviewProductHandler';
 import SelectedProductDetails from './SelectedProductDetails';
 import SectionContainer from '../../../componets/SectionContainer';
 import ExtraItem from './ExtraItem';
+import OrderAnnotations from './OrderAnnotations';
+import FooterButtons from './FooterButtons';
 
 const ContentCover = styled.div`
   height: 100vh;
@@ -54,6 +55,9 @@ const Container = styled.div`
   }
 
   & > .scrollable-content {
+    overflow: scroll;
+    height: 60vh;
+
     & > h1 {
       font-weight: 700;
       font-size: 2.25rem;
@@ -61,9 +65,6 @@ const Container = styled.div`
 
       margin-top: 5rem;
     }
-
-    overflow: scroll;
-    height: 55vh;
 
     &::-webkit-scrollbar {
       width: 0.5em;
@@ -104,7 +105,7 @@ const Container = styled.div`
 `;
 
 export default function OrderReview() {
-  const { cancel, reviewingProduct } = useReviewProductHandler();
+  const { finishReviewng, reviewingProduct } = useReviewProductHandler();
 
   return (
     <>
@@ -113,7 +114,7 @@ export default function OrderReview() {
         <h1>Revise seu pedido</h1>
 
         <Fab
-          onClick={cancel}
+          onClick={finishReviewng}
           sx={{
             backgroundColor: '#fff',
             boxShadow: 'none',
@@ -136,6 +137,8 @@ export default function OrderReview() {
               <ExtraItem key={`product-extra-item-${e.id}`} item={e} />
             ))}
           </SectionContainer>
+          <OrderAnnotations />
+          <FooterButtons />
         </div>
       </Container>
     </>

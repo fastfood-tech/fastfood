@@ -5,11 +5,12 @@ import { ReviewingProductsContext } from '../contexts/ReviewingProductsContext';
 
 export interface IReviewProductHandler {
   updateReviewingProduct: (product: SelectedProduct) => void;
-  cancel: () => void;
+  finishReviewng: () => void;
   reviewingProduct: SelectedProduct | null;
   startReviewing: (product: Product) => void;
   isExtraSelected: (extra: Extra) => boolean;
   selectExtra: (extra: Extra) => void;
+  updateAnnotations: (annotations: string) => void;
 }
 
 export default function useReviewProductHandler(): IReviewProductHandler {
@@ -50,13 +51,19 @@ export default function useReviewProductHandler(): IReviewProductHandler {
       annotations: '',
     });
 
-  const cancel = () => setReviewingProduct(null);
+  const updateAnnotations = (annotations: string) => {
+    if (!reviewingProduct) return;
+    setReviewingProduct({ ...reviewingProduct, annotations });
+  };
+
+  const finishReviewng = () => setReviewingProduct(null);
   return {
     updateReviewingProduct,
-    cancel,
+    finishReviewng,
     reviewingProduct,
     startReviewing,
     isExtraSelected,
     selectExtra,
+    updateAnnotations,
   };
 }
