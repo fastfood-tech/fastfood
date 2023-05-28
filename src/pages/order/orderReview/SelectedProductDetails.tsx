@@ -8,6 +8,7 @@ import Product from '../products/Product';
 import useReviewProductHandler from '../../../hooks/useReviewProductHandler';
 import { SelectedProduct } from '../../../types/types';
 import getProductBanners from '../products/utils/getProductBanners';
+import formatMonetaryValue from '../../../helpers/formatMonetaryValue';
 
 const Container = styled(SectionContainer)`
   display: flex;
@@ -37,8 +38,8 @@ const Container = styled(SectionContainer)`
     align-items: center;
 
     & > button {
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 2.25rem;
+      height: 2rem;
 
       &:first-child {
         margin-right: 0.5rem;
@@ -103,9 +104,9 @@ export default function SelectedProductDetails() {
         <SectionContainer
           className="product-data-details"
           title={reviewingProduct?.name}
-          titleFontSize="1.5rem"
+          titleFontSize="1.25rem"
           subTitle={reviewingProduct?.ingredients}
-          subtitleFontSize="1rem"
+          subtitleFontSize=".75rem"
         >
           <div className="amount-holder">
             <Fab
@@ -128,11 +129,11 @@ export default function SelectedProductDetails() {
         <p
           style={{
             fontWeight: 'bold',
-            fontSize: '2rem',
+            fontSize: '1.25rem',
             textAlign: 'center',
           }}
         >
-          {reviewingProduct?.price}
+          {formatMonetaryValue(reviewingProduct?.price || 0)}
         </p>
       </div>
     </Container>

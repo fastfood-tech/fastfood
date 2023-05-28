@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Extra } from '../../../types/types';
 import useReviewProductHandler from '../../../hooks/useReviewProductHandler';
+import formatMonetaryValue from '../../../helpers/formatMonetaryValue';
 
 interface IExtraItemsProps extends React.HtmlHTMLAttributes<HTMLEmbedElement> {
   item: Extra;
@@ -22,17 +23,17 @@ const Container = styled.div`
 
   h1 {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin-bottom: 0.5rem;
   }
 
   p {
-    font-size: 1.25rem;
+    font-size: 0.8rem;
   }
 
   p.price-holder {
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #9f9f9f;
   }
 
@@ -41,8 +42,8 @@ const Container = styled.div`
     -webkit-appearance: none;
     -moz-appearance: none;
 
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
 
     border-radius: 50%;
     border: 2px solid #125c13;
@@ -120,7 +121,7 @@ export default function ExtraItem({ item, ...props }: IExtraItemsProps) {
         <h1>{item.name}</h1>
         <p>{item.description}</p>
       </div>
-      <p className="price-holder">{item.price}</p>
+      <p className="price-holder">{formatMonetaryValue(item.price)}</p>
       <input
         checked={isExtraSelected(item)}
         onChange={() => selectExtra(item)}

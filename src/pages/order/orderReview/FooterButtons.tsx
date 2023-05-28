@@ -22,6 +22,8 @@ const Container = styled.div`
     margin: 1rem;
 
     overflow: hidden;
+
+    text-transform: capitalize;
   }
 
   button:last-child {

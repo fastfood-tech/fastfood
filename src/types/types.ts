@@ -29,7 +29,7 @@ export type Extra = {
 
 export type SelectedProduct = Product & {
   amount: number;
-  selectedExtraIds: number[];
+  selectedExtras: Extra[];
   annotations: string;
 };
 

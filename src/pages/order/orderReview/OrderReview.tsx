@@ -8,6 +8,8 @@ import SectionContainer from '../../../componets/SectionContainer';
 import ExtraItem from './ExtraItem';
 import OrderAnnotations from './OrderAnnotations';
 import FooterButtons from './FooterButtons';
+import useSelectProductHandler from '../../../hooks/useSelectProductHandler';
+import OrderDetails from '../../../componets/OrderDetails';
 
 const ContentCover = styled.div`
   height: 100vh;
@@ -17,7 +19,7 @@ const ContentCover = styled.div`
   top: 0;
   left: 0;
 
-  background-color: #fff;
+  background-color: #9f9f9f;
   opacity: 0.8;
 
   z-index: 5;
@@ -35,7 +37,6 @@ const Container = styled.div`
   top: calc(5vh + 5rem);
   left: 15vw;
 
-  border: 1px solid red;
   background-color: #fff;
 
   border-radius: 25px;
@@ -45,7 +46,7 @@ const Container = styled.div`
 
   & > h1 {
     font-weight: bold;
-    font-size: 2.25rem;
+    font-size: 1.75rem;
   }
 
   & > button {
@@ -106,6 +107,9 @@ const Container = styled.div`
 
 export default function OrderReview() {
   const { finishReviewng, reviewingProduct } = useReviewProductHandler();
+  const { getSelectedProducts } = useSelectProductHandler();
+
+  const shouldShowOrderDetails = getSelectedProducts().length > 0;
 
   return (
     <>
@@ -129,7 +133,7 @@ export default function OrderReview() {
           <SelectedProductDetails />
           <SectionContainer
             title="Adicionais"
-            titleFontSize="1.5rem"
+            titleFontSize="1.25rem"
             subTitle="Selecione os ingredientes que você quer adicionar a mais no seu lanche"
             subtitleFontSize="1rem"
           >
@@ -137,7 +141,8 @@ export default function OrderReview() {
               <ExtraItem key={`product-extra-item-${e.id}`} item={e} />
             ))}
           </SectionContainer>
-          <OrderAnnotations />
+          <OrderAnnotations style={{ marginBottom: '2rem' }} />
+          {shouldShowOrderDetails && <OrderDetails />}
           <FooterButtons />
         </div>
       </Container>

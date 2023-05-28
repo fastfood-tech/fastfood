@@ -23,30 +23,29 @@ export default function useReviewProductHandler(): IReviewProductHandler {
   };
 
   const isExtraSelected = (extra: Extra) =>
-    !!reviewingProduct?.selectedExtraIds.includes(extra.id);
+    !!reviewingProduct?.selectedExtras.some(e => e.id === extra.id);
 
   const selectExtra = (extra: Extra) => {
     if (!reviewingProduct) return;
 
-    let resultSelectedExtraIds: number[];
+    let resultSelectedExtras: Extra[];
 
     if (isExtraSelected(extra))
-      resultSelectedExtraIds = reviewingProduct?.selectedExtraIds.filter(
-        extraId => extraId !== extra.id,
+      resultSelectedExtras = reviewingProduct?.selectedExtras.filter(
+        e => e.id !== extra.id,
       );
-    else
-      resultSelectedExtraIds = [...reviewingProduct.selectedExtraIds, extra.id];
+    else resultSelectedExtras = [...reviewingProduct.selectedExtras, extra];
 
     setReviewingProduct({
       ...reviewingProduct,
-      selectedExtraIds: [...resultSelectedExtraIds],
+      selectedExtras: [...resultSelectedExtras],
     });
   };
 
   const startReviewing = (product: Product) =>
     setReviewingProduct({
       ...product,
-      selectedExtraIds: [],
+      selectedExtras: [],
       amount: 1,
       annotations: '',
     });

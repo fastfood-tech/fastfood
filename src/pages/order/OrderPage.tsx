@@ -8,6 +8,9 @@ import SectionContainer from '../../componets/SectionContainer';
 import Products from './products/Products';
 import OrderReview from './orderReview/OrderReview';
 import useReviewProductHandler from '../../hooks/useReviewProductHandler';
+import OrderDetails from '../../componets/OrderDetails';
+import useSelectProductHandler from '../../hooks/useSelectProductHandler';
+import FooterButtons from './FooterButtons';
 
 const Container = styled.div`
   height: 100vh;
@@ -47,7 +50,10 @@ export default function OrderPage() {
   const { searchedValue, handleSearch } = useSearch();
   const categoryHandler = useCategoryHandler();
   const { reviewingProduct } = useReviewProductHandler();
-  console.log(reviewingProduct);
+  const { getSelectedProducts } = useSelectProductHandler();
+
+  const shouldShowOrderDetails = getSelectedProducts().length > 0;
+
   return (
     <Container>
       <div className="scrollable-content">
@@ -74,6 +80,8 @@ export default function OrderPage() {
             style={{ marginTop: '3rem' }}
           />
         </SectionContainer>
+        {shouldShowOrderDetails && <OrderDetails />}
+        <FooterButtons disable={!shouldShowOrderDetails} />
       </div>
       {!!reviewingProduct && <OrderReview />}
     </Container>

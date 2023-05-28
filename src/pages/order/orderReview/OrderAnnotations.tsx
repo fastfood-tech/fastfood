@@ -19,7 +19,7 @@ const Container = styled(SectionContainer)`
 
     text-align: start;
 
-    background-color: rgb(236, 244, 255);
+    background-color: rgb(244, 244, 244);
 
     border: none;
     border-radius: 9px;

@@ -9,6 +9,7 @@ import {
   Product as ProductType,
   SelectedProduct,
 } from '../../../types/types';
+import formatMonetaryValue from '../../../helpers/formatMonetaryValue';
 
 interface IProductProps extends ISelectableItemContainerProps {
   product: ProductType | SelectedProduct;
@@ -166,7 +167,7 @@ export default function Product({
         <div style={{ display: isReview ? 'none' : 'block' }}>
           <h1 className="highlight">{product.name}</h1>
           <h2>{firstIngredient}</h2>
-          <p className="highlight">{product.price}</p>
+          <p className="highlight">{formatMonetaryValue(product.price)}</p>
         </div>
       </Content>
     </Container>
