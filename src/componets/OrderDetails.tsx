@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { HtmlHTMLAttributes } from 'react';
 import styled from 'styled-components';
 import useSelectProductHandler from '../hooks/useSelectProductHandler';
 import formatMonetaryValue from '../helpers/formatMonetaryValue';
+import useOrderPayment from '../hooks/useOrderPayment';
 
 const Container = styled.div`
   width: 100%;
@@ -42,27 +43,16 @@ const Container = styled.div`
     }
   }
 `;
-export default function OrderDetails() {
+export default function OrderDetails(
+  props: React.HtmlHTMLAttributes<HTMLElement>,
+) {
   const { getSelectedProducts } = useSelectProductHandler();
+  const { getTotalOrderPrice } = useOrderPayment();
 
   const selectedProducts = getSelectedProducts();
-
-  const totalOrdersPrice = selectedProducts.reduce(
-    (accumulator, currentProduct) => {
-      const productstotal = currentProduct.amount * currentProduct.price;
-      const extrasTotal = currentProduct.selectedExtras.reduce(
-        (extrasAccumulator, currentExtra) =>
-          extrasAccumulator + currentExtra.price,
-        0,
-      );
-
-      return accumulator + productstotal + extrasTotal;
-    },
-    0,
-  );
-
+  const totalOrdersPrice = getTotalOrderPrice();
   return (
-    <Container>
+    <Container {...props}>
       {selectedProducts.map(p => (
         <>
           <div className="product-holder">
