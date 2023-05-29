@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Calculate } from '@mui/icons-material';
 import SelectableItemContainer, {
   ISelectableItemContainerProps,
 } from '../../../componets/SelectableItem';
@@ -38,7 +37,7 @@ interface IContentProps extends React.HtmlHTMLAttributes<HTMLElement> {
 const Content = styled(({ isReview, ...props }: IContentProps) => (
   <div {...props} />
 ))`
-  width: ${({ isReview }) => (isReview ? '10rem' : '15vw')};
+  width: ${({ isReview }) => (isReview ? '10rem' : '14vw')};
   min-height: ${({ isReview }) => (isReview ? '4.5rem' : '10rem')};
 
   display: flex;
@@ -59,7 +58,7 @@ const Content = styled(({ isReview, ...props }: IContentProps) => (
   border-top-left-radius: 20px;
 
   margin-top: ${({ isReview }) =>
-    isReview ? 'calc(1vw + 2rem)' : 'calc(2vw + 2.5rem)'};
+    isReview ? 'calc(1vw + 2rem)' : 'calc(2vw + 3.5rem)'};
 
   & {
     padding: 0.5rem;
@@ -72,7 +71,7 @@ const Content = styled(({ isReview, ...props }: IContentProps) => (
     position: absolute;
     top: -4rem;
     left: ${({ isReview }) =>
-      isReview ? 'calc(5rem - 33%)' : 'calc(7.5vw - 33%)'};
+      isReview ? 'calc(5rem - 33%)' : 'calc(7vw - 33%)'};
 
     img {
       width: 100%;
@@ -86,7 +85,7 @@ const Content = styled(({ isReview, ...props }: IContentProps) => (
   & .highlight {
     font-family: inherit;
     font-weight: bold;
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: inherit;
 
     text-align: center;
@@ -95,8 +94,13 @@ const Content = styled(({ isReview, ...props }: IContentProps) => (
     margin-bottom: 0.5rem;
   }
 
+  h2 {
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
   p.highlight {
-    font-size: 1.25rem;
+    font-size: 1rem;
     margin-top: 1.5rem;
   }
 
@@ -106,6 +110,18 @@ const Content = styled(({ isReview, ...props }: IContentProps) => (
     & > div:first-child {
       left: ${({ isReview }) =>
         isReview ? 'calc(2.5vw - 33%)' : 'calc(6vw - 33%)'};
+    }
+  }
+
+  @media screen and (max-width: 1100px) {
+    width: ${({ isReview }) => (isReview ? '25vw' : '20vw')};
+    min-height: ${({ isReview }) => (isReview ? '6rem' : '10rem')};
+
+    margin-top: 5rem;
+
+    & > div:first-child {
+      left: ${({ isReview }) =>
+        isReview ? 'calc(12.5vw - 33%)' : 'calc(10vw - 33%)'};
     }
   }
 
@@ -138,7 +154,7 @@ const Content = styled(({ isReview, ...props }: IContentProps) => (
     width: ${({ isReview }) => (isReview ? '25vw' : '70vw')};
     & {
       padding-top: ${({ isReview }) => (isReview ? '2rem' : '4rem')};
-      margin-top: ${({ isReview }) => (isReview ? '3rem' : '6rem')};
+      margin-top: ${({ isReview }) => (isReview ? '2.5rem' : '6rem')};
     }
 
     & > div:first-child {

@@ -5,6 +5,7 @@ import GlobalStyle from './styles/GlobalStyles';
 import OrderPage from './pages/order/OrderPage';
 import { SelectedProductsProvider } from './contexts/SelectedProductsContext';
 import { ReviewingProductsProvider } from './contexts/ReviewingProductsContext';
+import PaymentPage from './pages/payment/PaymentPage';
 
 function App() {
   return (
@@ -12,18 +13,19 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <ReviewingProductsProvider>
-                <SelectedProductsProvider>
+        <SelectedProductsProvider>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <ReviewingProductsProvider>
                   <OrderPage />
-                </SelectedProductsProvider>
-              </ReviewingProductsProvider>
-            }
-          />
-        </Routes>
+                </ReviewingProductsProvider>
+              }
+            />
+            <Route path="/pagamento" element={<PaymentPage />} />
+          </Routes>
+        </SelectedProductsProvider>
       </BrowserRouter>
     </div>
   );

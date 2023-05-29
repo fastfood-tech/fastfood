@@ -5,7 +5,7 @@ export default function useProducts() {
     mockProducts.push({
       id: i,
       code: Math.ceil(Math.random() * 100),
-      name: 'Smash da casa',
+      name: 'Smash da casaaaaaaa',
       ingredients:
         '2x hambúrger 200g, queijo, cheddar, tomate, alface, picles, cebola, molho da casa',
       price: 30.5,

@@ -11,8 +11,8 @@ interface IProductCategoryProps extends ISelectableItemContainerProps {
 }
 
 const Container = styled(SelectableItemContainer)`
-  width: 21.5rem;
-  min-height: 13rem;
+  width: 15rem;
+  min-height: 8rem;
 
   display: flex;
   flex-direction: column;
@@ -20,12 +20,12 @@ const Container = styled(SelectableItemContainer)`
   align-items: center;
 
   & > div:first-child {
-    width: 66%;
+    width: 50%;
 
     img {
       width: 100%;
       height: 100%;
-      max-height: 8rem;
+      max-height: 7rem;
 
       object-fit: contain;
     }
@@ -36,7 +36,7 @@ const Container = styled(SelectableItemContainer)`
   h1 {
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     color: #121212;
 
     text-align: center;
@@ -45,14 +45,14 @@ const Container = styled(SelectableItemContainer)`
   }
 
   padding: 1rem;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
 
   @media screen and (max-width: 800px) {
-    width: 60vw;
+    width: 30vw;
     max-width: 21.5rem;
-    min-width: 200px;
+    min-width: 13rem;
 
-    min-height: 15rem;
+    min-height: 25vw;
   }
 
   margin: 1rem;

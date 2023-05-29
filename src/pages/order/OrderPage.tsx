@@ -18,18 +18,18 @@ const Container = styled.div`
 
   margin: 0 auto;
 
-  padding-top: 4rem;
+  padding-top: 2rem;
 
   & > .scrollable-content {
     & > h1 {
       font-weight: 700;
-      font-size: 2.25rem;
+      font-size: 1.75rem;
       color: #181818;
 
-      margin-top: 5rem;
+      margin-top: 4rem;
     }
 
-    height: calc(100vh - 5rem);
+    height: calc(100vh - 3rem);
 
     overflow: auto;
     &::-webkit-scrollbar {
@@ -64,20 +64,29 @@ export default function OrderPage() {
           onChange={handleSearch}
         />
 
-        <SectionContainer title="Categorias" subTitle="Navegue por categoria">
+        <SectionContainer
+          title="Categorias"
+          subTitle="Navegue por categoria"
+          titleFontSize="1.5rem"
+          subtitleFontSize="1rem"
+          style={{ marginTop: '3rem' }}
+        >
           <Categories
-            style={{ marginTop: '3rem' }}
+            style={{ marginTop: '1rem' }}
             categoryHandler={categoryHandler}
           />
         </SectionContainer>
         <SectionContainer
           title="Produtos"
           subTitle="Selecione um produto para adicionar ao seu pedido"
+          titleFontSize="1.5rem"
+          subtitleFontSize="1rem"
+          style={{ marginTop: '3rem' }}
         >
           <Products
             searchedProduct={searchedValue}
             selectedProductCategory={categoryHandler.selected}
-            style={{ marginTop: '3rem' }}
+            style={{ marginTop: '1rem' }}
           />
         </SectionContainer>
         {shouldShowOrderDetails && <OrderDetails />}
