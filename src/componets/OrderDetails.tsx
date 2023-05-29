@@ -66,7 +66,7 @@ export default function OrderDetails(
 
           {p.selectedExtras.map(extra => (
             <div className="product-extra-item">
-              <p>{extra.name}</p>
+              <p>+ {extra.name}</p>
               <p>{formatMonetaryValue(extra.price)}</p>
             </div>
           ))}

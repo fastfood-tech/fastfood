@@ -34,3 +34,9 @@ export type SelectedProduct = Product & {
 };
 
 export type SelectedProductsById = { [key: number]: SelectedProduct }[];
+
+export type KitchenItem = {
+  orderNumber: number;
+  clientName: string;
+  products: SelectedProduct[];
+};

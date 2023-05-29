@@ -6,6 +6,7 @@ import OrderPage from './pages/order/OrderPage';
 import { SelectedProductsProvider } from './contexts/SelectedProductsContext';
 import { ReviewingProductsProvider } from './contexts/ReviewingProductsContext';
 import PaymentPage from './pages/payment/PaymentPage';
+import KitchenPage from './pages/kitchen/KitchenPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               }
             />
             <Route path="/pagamento" element={<PaymentPage />} />
+            <Route path="/cozinha" element={<KitchenPage />} />
           </Routes>
         </SelectedProductsProvider>
       </BrowserRouter>
