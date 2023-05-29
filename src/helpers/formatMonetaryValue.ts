@@ -17,5 +17,5 @@ export function formatMonetaryCents(value: number): string {
 }
 
 export default function formatMonetaryValue(value: number) {
-  return formatMonetaryCents(value * 100);
+  return formatMonetaryCents(parseInt((value * 100).toFixed(2), 10));
 }

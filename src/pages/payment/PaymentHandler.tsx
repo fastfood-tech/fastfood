@@ -71,7 +71,7 @@ export default function PaymentHandler() {
   const { getTotalOrderPrice } = useOrderPayment();
   const nav = useNavigate();
 
-  const remainingMoneyInCents = paidCentsValue - getTotalOrderPrice() * 100;
+  const remainingMoney = paidCentsValue / 100 - getTotalOrderPrice();
 
   function handleInputClick(e: React.MouseEvent<HTMLInputElement, MouseEvent>) {
     const inputElement = e.target as HTMLInputElement;
@@ -105,9 +105,9 @@ export default function PaymentHandler() {
           title="Troco"
         >
           <input
-            value={`${
-              remainingMoneyInCents < 0 ? '-' : ''
-            } ${formatMonetaryCents(remainingMoneyInCents)}`}
+            value={`${remainingMoney < 0 ? '-' : ''} ${formatMonetaryValue(
+              Number(remainingMoney),
+            )}`}
             disabled
             type="text"
             className="code"
@@ -120,7 +120,7 @@ export default function PaymentHandler() {
           Cancelar
         </Fab>
         <Fab
-          disabled={remainingMoneyInCents < 0}
+          disabled={remainingMoney < 0}
           onClick={() => nav('/')}
           variant="extended"
         >

@@ -1,7 +1,9 @@
 import React, { HtmlHTMLAttributes } from 'react';
 import styled from 'styled-components';
 import useSelectProductHandler from '../hooks/useSelectProductHandler';
-import formatMonetaryValue from '../helpers/formatMonetaryValue';
+import formatMonetaryValue, {
+  formatMonetaryCents,
+} from '../helpers/formatMonetaryValue';
 import useOrderPayment from '../hooks/useOrderPayment';
 
 const Container = styled.div`
@@ -72,7 +74,7 @@ export default function OrderDetails(
       ))}
       <div className="total-holder">
         <h1>Total do pedido:</h1>
-        <p>{formatMonetaryValue(totalOrdersPrice)}</p>
+        <p>{formatMonetaryCents(totalOrdersPrice * 100)}</p>
       </div>
     </Container>
   );
