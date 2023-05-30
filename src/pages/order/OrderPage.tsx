@@ -9,8 +9,8 @@ import Products from './products/Products';
 import OrderReview from './orderReview/OrderReview';
 import useReviewProductHandler from '../../hooks/useReviewProductHandler';
 import OrderDetails from '../../componets/OrderDetails';
-import useSelectProductHandler from '../../hooks/useSelectProductHandler';
 import FooterButtons from './FooterButtons';
+import useOrderHandler from '../../hooks/useOrderHandler';
 
 const Container = styled.div`
   height: 100vh;
@@ -50,7 +50,7 @@ export default function OrderPage() {
   const { searchedValue, handleSearch } = useSearch();
   const categoryHandler = useCategoryHandler();
   const { reviewingProduct } = useReviewProductHandler();
-  const { getSelectedProducts } = useSelectProductHandler();
+  const { getSelectedProducts } = useOrderHandler();
 
   const shouldShowOrderDetails = getSelectedProducts().length > 0;
 

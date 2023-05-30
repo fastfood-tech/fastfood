@@ -1,23 +1,29 @@
-import { ChangeEvent, useState } from 'react';
-import useSelectProductHandler from './useSelectProductHandler';
+import { ChangeEvent } from 'react';
+import useOrderHandler from './useOrderHandler';
+import useReviewProductHandler from './useReviewProductHandler';
 
 export interface IOrderPayment {
   getTotalOrderPrice: () => number;
-  handleClientName: (e: ChangeEvent<HTMLInputElement>) => void;
   clientName: string;
-  orderCode: number;
+  handleClientName: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function useOrderPayment(): IOrderPayment {
-  const [clientName, setClientName] = useState('');
-  const MockOrderCode = 200;
+  const { reviewingProduct } = useReviewProductHandler();
+  const { setClientName, clientName, getSelectedProducts } = useOrderHandler();
 
-  const { getSelectedProducts } = useSelectProductHandler();
+  const handleClientName = (e: ChangeEvent<HTMLInputElement>) => {
+    setClientName(e.target.value.trim());
+  };
 
   const getTotalOrderPrice = () => {
     const selectedProducts = getSelectedProducts();
 
-    const totalOrdersPrice = selectedProducts.reduce(
+    const ordersToCalculate = reviewingProduct
+      ? [...selectedProducts, reviewingProduct]
+      : selectedProducts;
+
+    const totalOrdersPrice = ordersToCalculate.reduce(
       (accumulator, currentProduct) => {
         const productstotal = currentProduct.amount * currentProduct.price;
         const extrasTotal = currentProduct.selectedExtras.reduce(
@@ -34,14 +40,9 @@ export default function useOrderPayment(): IOrderPayment {
     return totalOrdersPrice;
   };
 
-  const handleClientName = (e: ChangeEvent<HTMLInputElement>) => {
-    setClientName(e.target.value.trim());
-  };
-
   return {
     getTotalOrderPrice,
-    handleClientName,
     clientName,
-    orderCode: MockOrderCode,
+    handleClientName,
   };
 }

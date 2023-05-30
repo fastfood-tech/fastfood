@@ -5,13 +5,17 @@ import DoneIcon from '@mui/icons-material/DoneRounded';
 
 import KitchenItemDetails from './KitchenItemDetails';
 import { KitchenItem as KitchenItemType } from '../../types/types';
+import { OrderApiHandler } from '../../hooks/api/useOrders';
+import Loader from '../../componets/Loader';
+import askForConfirmation from '../../helpers/askForConfirmation';
 
 interface IKitchenItemProps extends React.HtmlHTMLAttributes<HTMLElement> {
   finished?: boolean;
   item: KitchenItemType;
+  orderApiHandler: OrderApiHandler;
 }
 
-type ContainerProps = Omit<IKitchenItemProps, 'item'>;
+type ContainerProps = Omit<IKitchenItemProps, 'item' | 'orderApiHandler'>;
 const Container = styled(({ finished, ...props }: ContainerProps) => (
   <div {...props} />
 ))`
@@ -112,7 +116,7 @@ const Container = styled(({ finished, ...props }: ContainerProps) => (
     }
   }
 
-  button:last-child {
+  button.finish {
     background-color: #e5f5e6;
 
     svg {
@@ -153,15 +157,25 @@ const Container = styled(({ finished, ...props }: ContainerProps) => (
 export default function KitchenItem({
   finished = false,
   item,
+  orderApiHandler,
   ...props
 }: IKitchenItemProps) {
+  const { finish, isFinishing, deliver, isdelivering } = orderApiHandler;
+
+  const finishOrder = () =>
+    askForConfirmation('Marcar como pronto?').then(r => {
+      if (r.isConfirmed) finish(item.id);
+    });
+
+  const deliverOrder = () =>
+    askForConfirmation('Pedido entregue?').then(r => {
+      if (r.isConfirmed) deliver(item.id);
+    });
+
   return (
     <Container finished={finished} style={{ marginTop: '2rem' }} {...props}>
       <div className="image-holder">
-        <img
-          src={item.products[0].image.url}
-          alt={item.products[0].image.description || ''}
-        />
+        <img src={item.products[0].imageUrl} alt="" />
       </div>
       <div className="details-holder">
         <h1>
@@ -169,16 +183,21 @@ export default function KitchenItem({
           {item.orderNumber} - {item.clientName}
         </h1>
         {item.products.map(p => (
-          <KitchenItemDetails product={p} />
+          <KitchenItemDetails
+            key={`kitch-item-holder-${p.id}-product-${p.id}`}
+            product={p}
+          />
         ))}
       </div>
       <div className="buttons-holder">
-        <button type="button">
-          <CloseIcon />
+        <button className="deliver" onClick={deliverOrder} type="button">
+          {isdelivering ? <Loader width="2rem" height="2rem" /> : <CloseIcon />}
         </button>
-        <button type="button">
-          <DoneIcon />
-        </button>
+        {finished || (
+          <button className="finish" onClick={finishOrder} type="button">
+            {isFinishing ? <Loader width="2rem" height="2rem" /> : <DoneIcon />}
+          </button>
+        )}
       </div>
     </Container>
   );

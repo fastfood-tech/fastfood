@@ -8,6 +8,8 @@ import formatMonetaryValue, {
 } from '../../helpers/formatMonetaryValue';
 import handleMonetaryEventData from './helpers/handleMonetaryEventData';
 import useOrderPayment from '../../hooks/useOrderPayment';
+import useOrders from '../../hooks/api/useOrders';
+import Loader from '../../componets/Loader';
 
 const Container = styled.div`
   display: flex;
@@ -69,6 +71,8 @@ const Container = styled.div`
 export default function PaymentHandler() {
   const [paidCentsValue, setPaidCentsValue] = useState(0);
   const { getTotalOrderPrice } = useOrderPayment();
+  const { orderApiHandler, clientName } = useOrders();
+  const [isCreatingOrder, setIsCreatingOrder] = useState(false);
   const nav = useNavigate();
 
   const remainingMoney = paidCentsValue / 100 - getTotalOrderPrice();
@@ -81,6 +85,14 @@ export default function PaymentHandler() {
     inputElement.selectionStart = contentLength;
     inputElement.selectionEnd = contentLength;
   }
+
+  const createOrder = () => {
+    setIsCreatingOrder(true);
+    orderApiHandler
+      .create()
+      .then(() => nav('/'))
+      .finally(() => setIsCreatingOrder(false));
+  };
 
   return (
     <>
@@ -116,15 +128,27 @@ export default function PaymentHandler() {
         </SectionContainer>
       </div>{' '}
       <Container>
-        <Fab onClick={() => nav('/')} variant="extended">
-          Cancelar
-        </Fab>
         <Fab
-          disabled={remainingMoney < 0}
+          disabled={isCreatingOrder}
           onClick={() => nav('/')}
           variant="extended"
         >
-          finalizar Pedido
+          Cancelar
+        </Fab>
+        <Fab
+          disabled={
+            remainingMoney < 0 ||
+            isCreatingOrder ||
+            clientName.trim().length === 0
+          }
+          variant="extended"
+          onClick={createOrder}
+        >
+          {isCreatingOrder ? (
+            <Loader width="3rem" height="3rem" />
+          ) : (
+            'finalizar Pedido'
+          )}
         </Fab>
       </Container>
     </>

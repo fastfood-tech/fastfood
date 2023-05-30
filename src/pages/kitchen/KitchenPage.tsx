@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import SectionContainer from '../../componets/SectionContainer';
+
+import useOrders from '../../hooks/api/useOrders';
 import KitchenItem from './KitchenItem';
-import useSelectProductHandler from '../../hooks/useSelectProductHandler';
+import Loader from '../../componets/Loader';
 
 const Container = styled.div`
   display: flex;
@@ -41,11 +44,39 @@ const Container = styled.div`
   }
 `;
 export default function KitchenPage() {
+  const { orders, isLoading, orderApiHandler } = useOrders();
+  const unDoneOrders = orders?.undone;
+  const doneOrders = orders?.done;
+
   return (
     <Container>
-      <SectionContainer style={{ padding: '1rem' }} title="Preparando:" />
-
-      <SectionContainer style={{ padding: '1rem' }} title="Pronto:" />
+      <SectionContainer style={{ padding: '1rem' }} title="Preparando:">
+        {isLoading ? (
+          <Loader width="4rem" height="4rem" />
+        ) : (
+          unDoneOrders?.map(o => (
+            <KitchenItem
+              item={{ ...o, orderNumber: o.orderCode }}
+              key={`order-kitchen-item-${o.id}`}
+              orderApiHandler={orderApiHandler}
+            />
+          ))
+        )}
+      </SectionContainer>
+      <SectionContainer style={{ padding: '1rem' }} title="Pronto:">
+        {isLoading ? (
+          <Loader width="4rem" height="4rem" />
+        ) : (
+          doneOrders?.map(o => (
+            <KitchenItem
+              finished
+              orderApiHandler={orderApiHandler}
+              item={{ ...o, orderNumber: o.orderCode }}
+              key={`order-kitchen-item-${o.id}`}
+            />
+          ))
+        )}
+      </SectionContainer>
     </Container>
   );
 }

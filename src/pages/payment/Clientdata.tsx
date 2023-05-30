@@ -1,9 +1,13 @@
 import React from 'react';
 import SectionContainer from '../../componets/SectionContainer';
 import useOrderPayment from '../../hooks/useOrderPayment';
+import useOrders from '../../hooks/api/useOrders';
+import Loader from '../../componets/Loader';
 
 export default function ClientData() {
-  const { handleClientName, clientName, orderCode } = useOrderPayment();
+  const { nextOrderCode, isLoading } = useOrders();
+  const { handleClientName, clientName } = useOrderPayment();
+
   return (
     <div className="client-data-holder">
       <SectionContainer
@@ -24,7 +28,11 @@ export default function ClientData() {
         titleFontSize="1rem"
         title="Código"
       >
-        <input type="text" value={orderCode} disabled />
+        {isLoading ? (
+          <Loader width="3rem" height="3rem" />
+        ) : (
+          <input type="text" value={nextOrderCode || 'offline'} disabled />
+        )}
       </SectionContainer>
     </div>
   );

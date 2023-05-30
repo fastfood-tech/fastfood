@@ -115,7 +115,7 @@ export default function ExtraItem({ item, ...props }: IExtraItemsProps) {
   return (
     <Container {...props}>
       <div className="image-holder">
-        <img src={item.image.url} alt={item.image.description || ''} />
+        <img src={item.imageUrl} alt="" />
       </div>
       <div className="details-holder">
         <h1>{item.name}</h1>

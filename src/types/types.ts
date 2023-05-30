@@ -6,14 +6,14 @@ export type Image = {
 export type Category = {
   id: number;
   name: string;
-  image: Image;
+  image: string;
 };
 
 export type Product = {
   id: number;
   name: string;
   code: number;
-  image: Image;
+  imageUrl: string;
   ingredients: string;
   price: number;
   extras: Extra[];
@@ -24,7 +24,7 @@ export type Extra = {
   name: string;
   description: string;
   price: number;
-  image: Image;
+  imageUrl: string;
 };
 
 export type SelectedProduct = Product & {
@@ -36,7 +36,29 @@ export type SelectedProduct = Product & {
 export type SelectedProductsById = { [key: number]: SelectedProduct }[];
 
 export type KitchenItem = {
+  id: number;
   orderNumber: number;
   clientName: string;
-  products: SelectedProduct[];
+  products: Omit<SelectedProduct, 'extra'>[];
+};
+
+export type Order = {
+  id: number;
+  isDelivered: boolean;
+  isDone: boolean;
+  clientName: string;
+  orderCode: number;
+  products: Omit<SelectedProduct, 'extra'>[];
+};
+
+export type OrdersByStatus = {
+  undone?: Order[];
+  done?: Order[];
+  total: number;
+};
+
+export type getProductFilters = {
+  code?: number;
+  categoryId?: number;
+  name?: string;
 };

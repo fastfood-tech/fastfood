@@ -1,8 +1,9 @@
 import React from 'react';
-import { BoxProps, Fab } from '@mui/material';
+import { Fab } from '@mui/material';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import useSelectProductHandler from '../../hooks/useSelectProductHandler';
+import askForConfirmation from '../../helpers/askForConfirmation';
+import useOrderHandler from '../../hooks/useOrderHandler';
 
 const Container = styled.div`
   display: flex;
@@ -57,10 +58,13 @@ const Container = styled.div`
   }
 `;
 export default function FooterButtons({ disable }: { disable: boolean }) {
-  const { getSelectedProducts, remove } = useSelectProductHandler();
+  const { getSelectedProducts, remove } = useOrderHandler();
   const nav = useNavigate();
 
-  const cancel = () => getSelectedProducts().forEach(p => remove(p));
+  const cancel = () =>
+    askForConfirmation('Remover todos os itens selecionados?').then(r => {
+      if (r.isConfirmed) getSelectedProducts().forEach(p => remove(p));
+    });
 
   return (
     <Container>
