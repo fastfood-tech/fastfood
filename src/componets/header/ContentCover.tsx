@@ -16,7 +16,7 @@ const ContentCover = styled(({ hide, ...props }: IcoverProps) => (
   top: 0;
 
   background-color: #fff;
-  opacity: 0.8;
+  opacity: 0.9;
 
   z-index: 5;
 

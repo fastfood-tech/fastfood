@@ -26,8 +26,8 @@ const Container = styled(({ isMenuOpen, ...props }: IContainerProps) => (
     top: 0;
     right: ${({ isMenuOpen }) => (isMenuOpen ? '0' : '-68vw')};
 
-    background-color: rgba(18, 92, 19, 0.2);
-    opacity: 0.9;
+    background-color: rgba(18, 92, 19);
+    opacity: 0.8;
 
     padding-top: 5rem;
 
