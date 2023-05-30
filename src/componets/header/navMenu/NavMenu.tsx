@@ -49,9 +49,6 @@ export default function NavMenu(props: IContainerProps) {
       <NavLink isSelected={pathname === '/cozinha'} to="/cozinha">
         Cozinha
       </NavLink>
-      <NavLink isSelected={pathname === '/retirada'} to="/retirada">
-        Retirada
-      </NavLink>
     </Container>
   );
 }
