@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import SectionContainer from '../../componets/SectionContainer';
-
 import useOrders from '../../hooks/api/useOrders';
 import KitchenItem from './KitchenItem';
 import Loader from '../../componets/Loader';

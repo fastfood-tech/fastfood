@@ -10,6 +10,7 @@ import handleMonetaryEventData from './helpers/handleMonetaryEventData';
 import useOrderPayment from '../../hooks/useOrderPayment';
 import useOrders from '../../hooks/api/useOrders';
 import Loader from '../../componets/Loader';
+import usePrintOrder from '../../hooks/usePrintOrder';
 
 const Container = styled.div`
   display: flex;
@@ -73,6 +74,7 @@ export default function PaymentHandler() {
   const { getTotalOrderPrice } = useOrderPayment();
   const { orderApiHandler, clientName } = useOrders();
   const [isCreatingOrder, setIsCreatingOrder] = useState(false);
+  const { print } = usePrintOrder();
   const nav = useNavigate();
 
   const remainingMoney = paidCentsValue / 100 - getTotalOrderPrice();
@@ -88,10 +90,11 @@ export default function PaymentHandler() {
 
   const createOrder = () => {
     setIsCreatingOrder(true);
-    orderApiHandler
-      .create()
-      .then(() => nav('/'))
-      .finally(() => setIsCreatingOrder(false));
+    orderApiHandler.create().then(() => {
+      print();
+      setIsCreatingOrder(false);
+      nav('/');
+    });
   };
 
   return (
