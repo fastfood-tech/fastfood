@@ -11,7 +11,7 @@ const NavLink = styled(({ isSelected, ...props }: INavLinkProps) => (
   <Link {...props} />
 ))`
   background-color: ${({ isSelected }) =>
-    isSelected ? 'rgb(0, 50, 0)' : 'rgb(30,125,20)'};
+    isSelected ? 'rgba(0, 0, 0, 0.25)' : 'rgba(18, 92, 19, 1)'};
 
   font-family: Roboto, sans-serif;
   font-size: 1rem;
@@ -25,6 +25,11 @@ const NavLink = styled(({ isSelected, ...props }: INavLinkProps) => (
   padding-right: 1rem;
 
   border-radius: 9px;
+
+  @media screen and (max-width: 800px) {
+    background-color: ${({ isSelected }) =>
+      isSelected ? 'rgb(0, 50, 0)' : 'rgb(30,125,20)'};
+  }
 `;
 
 export default NavLink;
