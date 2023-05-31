@@ -8,8 +8,8 @@ import SectionContainer from '../../../componets/SectionContainer';
 import ExtraItem from './ExtraItem';
 import OrderAnnotations from './OrderAnnotations';
 import FooterButtons from './FooterButtons';
-import useSelectProductHandler from '../../../hooks/useSelectProductHandler';
 import OrderDetails from '../../../componets/OrderDetails';
+import useOrderPayment from '../../../hooks/useOrderPayment';
 
 const ContentCover = styled.div`
   height: 100vh;
@@ -107,9 +107,9 @@ const Container = styled.div`
 
 export default function OrderReview() {
   const { finishReviewng, reviewingProduct } = useReviewProductHandler();
-  const { getSelectedProducts } = useSelectProductHandler();
+  const { getTotalOrderPrice } = useOrderPayment();
 
-  const shouldShowOrderDetails = getSelectedProducts().length > 0;
+  const shouldShowOrderDetails = getTotalOrderPrice() > 0;
 
   return (
     <>

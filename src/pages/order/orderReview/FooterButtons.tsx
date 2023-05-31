@@ -2,7 +2,7 @@ import React from 'react';
 import { Fab } from '@mui/material';
 import styled from 'styled-components';
 import useReviewProductHandler from '../../../hooks/useReviewProductHandler';
-import useSelectProductHandler from '../../../hooks/useSelectProductHandler';
+import useOrderHandler from '../../../hooks/useOrderHandler';
 import { SelectedProduct } from '../../../types/types';
 
 const Container = styled.div`
@@ -48,7 +48,7 @@ const Container = styled.div`
 `;
 export default function FooterButtons() {
   const { reviewingProduct, finishReviewng } = useReviewProductHandler();
-  const { select } = useSelectProductHandler();
+  const { select } = useOrderHandler();
 
   const addToOrder = (selectedProduct: SelectedProduct | null) => {
     if (selectedProduct) select(selectedProduct);

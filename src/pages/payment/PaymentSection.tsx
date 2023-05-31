@@ -8,6 +8,10 @@ import formatMonetaryValue, {
 } from '../../helpers/formatMonetaryValue';
 import handleMonetaryEventData from './helpers/handleMonetaryEventData';
 import useOrderPayment from '../../hooks/useOrderPayment';
+import useOrders from '../../hooks/api/useOrders';
+import Loader from '../../componets/Loader';
+import usePrintOrder from '../../hooks/usePrintOrder';
+import { FloatingButton } from '../../componets/FloatingButton';
 
 const Container = styled.div`
   display: flex;
@@ -18,57 +22,14 @@ const Container = styled.div`
   & > div:last-child {
     background-color: red;
   }
-  button {
-    width: 17rem;
-
-    background-color: #fff;
-    color: #125c13;
-
-    border: 1px solid #125c13;
-    border-radius: 15px;
-
-    margin: 1rem;
-
-    overflow: hidden;
-
-    text-transform: capitalize;
-    z-index: 5;
-
-    &:disabled {
-      color: #ababab;
-      background-color: #fff;
-      border: 1px solid #ababab;
-    }
-  }
-
-  button:last-child {
-    background-color: #125c13;
-    color: #fff;
-
-    &:disabled {
-      background-color: #ababab;
-    }
-  }
-
-  @media screen and (max-width: 800px) {
-    button {
-      width: 15rem;
-    }
-  }
-
-  @media screen and (max-width: 700px) {
-    button {
-      width: 80%;
-
-      font-size: 0.75rem;
-      line-height: 0.75rem;
-    }
-  }
 `;
 
-export default function PaymentHandler() {
+export default function PaymentSection() {
   const [paidCentsValue, setPaidCentsValue] = useState(0);
   const { getTotalOrderPrice } = useOrderPayment();
+  const { orderApiHandler, clientName } = useOrders();
+  const [isCreatingOrder, setIsCreatingOrder] = useState(false);
+  const { print } = usePrintOrder();
   const nav = useNavigate();
 
   const remainingMoney = paidCentsValue / 100 - getTotalOrderPrice();
@@ -81,6 +42,15 @@ export default function PaymentHandler() {
     inputElement.selectionStart = contentLength;
     inputElement.selectionEnd = contentLength;
   }
+
+  const createOrder = () => {
+    setIsCreatingOrder(true);
+    orderApiHandler.create().then(() => {
+      print();
+      setIsCreatingOrder(false);
+      nav('/');
+    });
+  };
 
   return (
     <>
@@ -116,16 +86,29 @@ export default function PaymentHandler() {
         </SectionContainer>
       </div>{' '}
       <Container>
-        <Fab onClick={() => nav('/')} variant="extended">
-          Cancelar
-        </Fab>
-        <Fab
-          disabled={remainingMoney < 0}
+        <FloatingButton
+          disabled={isCreatingOrder}
           onClick={() => nav('/')}
           variant="extended"
         >
-          finalizar Pedido
-        </Fab>
+          Cancelar
+        </FloatingButton>
+        <FloatingButton
+          confirmation
+          disabled={
+            remainingMoney < 0 ||
+            isCreatingOrder ||
+            clientName.trim().length === 0
+          }
+          variant="extended"
+          onClick={createOrder}
+        >
+          {isCreatingOrder ? (
+            <Loader width="3rem" height="3rem" />
+          ) : (
+            'finalizar Pedido'
+          )}
+        </FloatingButton>
       </Container>
     </>
   );

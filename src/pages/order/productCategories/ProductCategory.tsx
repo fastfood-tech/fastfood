@@ -12,7 +12,7 @@ interface IProductCategoryProps extends ISelectableItemContainerProps {
 
 const Container = styled(SelectableItemContainer)`
   width: 15rem;
-  min-height: 8rem;
+  min-height: 9rem;
 
   display: flex;
   flex-direction: column;
@@ -25,7 +25,7 @@ const Container = styled(SelectableItemContainer)`
     img {
       width: 100%;
       height: 100%;
-      max-height: 7rem;
+      max-height: 5rem;
 
       object-fit: contain;
     }
@@ -51,8 +51,6 @@ const Container = styled(SelectableItemContainer)`
     width: 30vw;
     max-width: 21.5rem;
     min-width: 13rem;
-
-    min-height: 25vw;
   }
 
   margin: 1rem;

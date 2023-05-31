@@ -177,7 +177,7 @@ export default function Product({
     <Container style={{}} {...props}>
       <Content isReview={isReview}>
         <div>
-          <img src={product.image.url} alt={product.image.description || ''} />
+          <img src={product.imageUrl} alt={product.imageUrl || ''} />
         </div>
 
         <div style={{ display: isReview ? 'none' : 'block' }}>

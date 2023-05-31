@@ -1,18 +1,23 @@
 import { useContext } from 'react';
 import { Product, SelectedProduct } from '../types/types';
-import { SelectedProductsContext } from '../contexts/SelectedProductsContext';
+import { OrderContext } from '../contexts/orderContext';
 
 export interface ISelectProductHandler {
   select: (product: SelectedProduct) => void;
   remove: (product: Product) => void;
   getSelectedProducts: () => SelectedProduct[];
   isSelected: (product: Product) => boolean;
+  clientName: string;
+  setClientName: (name: string) => void;
 }
 
-export default function useSelectProductHandler(): ISelectProductHandler {
-  const { selectedProductsById, setSelectedProductsById } = useContext(
-    SelectedProductsContext,
-  );
+export default function useOrderHandler(): ISelectProductHandler {
+  const {
+    selectedProductsById,
+    setSelectedProductsById,
+    clientName,
+    setClientName,
+  } = useContext(OrderContext);
 
   const isSelected = (product: Product) => {
     return selectedProductsById[product.id] !== undefined;
@@ -36,5 +41,7 @@ export default function useSelectProductHandler(): ISelectProductHandler {
     remove,
     getSelectedProducts,
     isSelected,
+    clientName,
+    setClientName,
   };
 }

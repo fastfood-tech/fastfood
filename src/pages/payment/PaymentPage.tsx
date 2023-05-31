@@ -4,7 +4,7 @@ import WalletIcon from '@mui/icons-material/AccountBalanceWalletRounded';
 import SectionContainer from '../../componets/SectionContainer';
 import OrderDetails from '../../componets/OrderDetails';
 import ClientData from './Clientdata';
-import PaymentHandler from './PaymentHandler';
+import PaymenSection from './PaymentSection';
 
 const Container = styled.div`
   width: 80%;
@@ -111,7 +111,7 @@ export default function PaymentPage() {
         <OrderDetails style={{ marginTop: '1rem' }} />
       </SectionContainer>
       <ClientData />
-      <PaymentHandler />
+      <PaymenSection />
     </Container>
   );
 }

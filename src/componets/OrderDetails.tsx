@@ -1,10 +1,12 @@
 import React, { HtmlHTMLAttributes } from 'react';
 import styled from 'styled-components';
-import useSelectProductHandler from '../hooks/useSelectProductHandler';
+
 import formatMonetaryValue, {
   formatMonetaryCents,
 } from '../helpers/formatMonetaryValue';
 import useOrderPayment from '../hooks/useOrderPayment';
+import useReviewProductHandler from '../hooks/useReviewProductHandler';
+import useOrderHandler from '../hooks/useOrderHandler';
 
 const Container = styled.div`
   width: 100%;
@@ -48,15 +50,20 @@ const Container = styled.div`
 export default function OrderDetails(
   props: React.HtmlHTMLAttributes<HTMLElement>,
 ) {
-  const { getSelectedProducts } = useSelectProductHandler();
+  const { getSelectedProducts } = useOrderHandler();
   const { getTotalOrderPrice } = useOrderPayment();
+  const { reviewingProduct } = useReviewProductHandler();
 
   const selectedProducts = getSelectedProducts();
   const totalOrdersPrice = getTotalOrderPrice();
+
+  const orderProducts = reviewingProduct
+    ? [...selectedProducts, reviewingProduct]
+    : selectedProducts;
   return (
     <Container {...props}>
-      {selectedProducts.map(p => (
-        <>
+      {orderProducts.map(p => (
+        <React.Fragment key={`order-product-holder-${p.id}`}>
           <div className="product-holder">
             <p>
               {p.amount}x {p.name}
@@ -65,12 +72,15 @@ export default function OrderDetails(
           </div>
 
           {p.selectedExtras.map(extra => (
-            <div className="product-extra-item">
-              <p>{extra.name}</p>
+            <div
+              key={`order-product-holder${p.id}-extra-${extra.id}`}
+              className="product-extra-item"
+            >
+              <p>+ {extra.name}</p>
               <p>{formatMonetaryValue(extra.price)}</p>
             </div>
           ))}
-        </>
+        </React.Fragment>
       ))}
       <div className="total-holder">
         <h1>Total do pedido:</h1>

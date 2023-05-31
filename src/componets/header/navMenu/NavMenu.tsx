@@ -26,8 +26,8 @@ const Container = styled(({ isMenuOpen, ...props }: IContainerProps) => (
     top: 0;
     right: ${({ isMenuOpen }) => (isMenuOpen ? '0' : '-68vw')};
 
-    background-color: rgba(18, 92, 19, 0.2);
-    opacity: 0.9;
+    background-color: rgba(18, 92, 19);
+    opacity: 0.8;
 
     padding-top: 5rem;
 
@@ -46,11 +46,8 @@ export default function NavMenu(props: IContainerProps) {
       <NavLink isSelected={pathname === '/'} to="/">
         Pedidos
       </NavLink>
-      <NavLink isSelected={pathname === '/cozinnha'} to="/cozinnha">
+      <NavLink isSelected={pathname === '/cozinha'} to="/cozinha">
         Cozinha
-      </NavLink>
-      <NavLink isSelected={pathname === '/retirada'} to="/retirada">
-        Retirada
       </NavLink>
     </Container>
   );
