@@ -33,6 +33,7 @@ git clone https://github.com/fastfood-tech/fastfood.git
 cd fastfood
 ```
 3 - In your project, create a file named .env in the root directory.
+
 4 - Open the .env file and add the following line:
 ```bash
 REACT_APP_BASE_API_URL=<base_api_url>
