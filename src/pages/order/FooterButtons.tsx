@@ -1,5 +1,4 @@
 import React from 'react';
-import { Fab } from '@mui/material';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import askForConfirmation from '../../helpers/askForConfirmation';

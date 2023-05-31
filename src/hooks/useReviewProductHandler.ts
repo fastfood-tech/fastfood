@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Extra, Product, SelectedProduct } from '../types/types';
 
 import { ReviewingProductsContext } from '../contexts/ReviewingProductsContext';

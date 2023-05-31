@@ -7,11 +7,12 @@ export async function getProducts({
   categoryId,
   code,
 }: filters): Promise<Product[]> {
-  let query = '?';
+  let query = '';
 
-  if (name) query += `name=${name}`;
-  if (categoryId) query += `categoryId=${categoryId}`;
-  if (code) query += `code=${code}`;
+  if (name) query += `&name=${name}`;
+  if (categoryId) query += `&categoryId=${categoryId}`;
+  if (code) query += `&code=${code}`;
+  query = `?${query.substring(1)}`;
 
   if (query === '?') query = '';
   const response = await api.get(`/products${query}`);

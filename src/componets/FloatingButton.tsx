@@ -1,5 +1,5 @@
-import { Fab, FabProps } from '@mui/material';
 import React from 'react';
+import { Fab, FabProps } from '@mui/material';
 import styled from 'styled-components';
 
 interface IFloatingButtonProps extends FabProps {

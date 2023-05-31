@@ -1,4 +1,4 @@
-import React, { HtmlHTMLAttributes } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import formatMonetaryValue, {

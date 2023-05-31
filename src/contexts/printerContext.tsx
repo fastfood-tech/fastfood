@@ -5,7 +5,7 @@ const PrinterContext = createContext<{
   setPort: (port: SerialPort) => void;
 }>({
   port: null,
-  setPort: (port: SerialPort) => undefined,
+  setPort: () => undefined,
 });
 
 export function PrinterProvider({ children }: { children: React.ReactNode }) {
