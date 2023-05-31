@@ -18,15 +18,15 @@ The goal of this project is to create a user-friendly and efficient system for p
 
 <h2>Required Technologies</h2>
 
-- git 
-- Docker
-- Docker-compose
+- Git 
+- NodeJs
+- Npm
 
 <h2>How to Run</h2>
 
 1 - Clone the repository:
 ```bash
-git clone https://github.com/fastfood-tech/fastfood.git
+git clone https://github.com/fastfood-tech/fastfood
 ```
 2 - Navigate to the project folder:
 ```bash
@@ -38,10 +38,20 @@ cd fastfood
 ```bash
 REACT_APP_BASE_API_URL=<base_api_url>
 ```
-- Replace <base_api_url> with the actual base URL of your API. (if running backend container as suggested, it is "http://localhost/api")
+- Replace <base_api_url> with the actual base URL of your API. (if running <a href="https://github.com/fastfood-tech/fastfood-api">backend</a> as suggested, it is "http://localhost/api")
+
 5 - Save the .env file.
-6 - Start the containers:
+
+6 - Install dependencies:
 ```bash
-docker-compose up
+npm i
 ```
-4 - Access app at http://localhost
+7 - [optional]: Run tests
+```bash
+npm run test
+```
+8 - Start app
+```bash
+npm start
+```
+4 - Access app at http://localhost:3000
